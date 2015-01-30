@@ -8,8 +8,11 @@ package hijri
 
 import "time"
 
+// A Month specifies a Hijri month of the year (Muharram = 1, ...).
+type Month int
+
 const (
-	Muharram = iota
+	Muharram Month = 1 + iota
 	Safar
 	RabiAlawwal
 	RabiAlthani
@@ -22,8 +25,6 @@ const (
 	DhuAlQidah
 	DhuAlHijjah
 )
-
-type Month int
 
 const (
 	daysPer30Years   = 11*355 + 19*354
@@ -65,6 +66,7 @@ func HijriDate(t time.Time) (year int, month Month, day int) {
 		day -= daysPerEvenMonth
 	}
 
+	month++
 	day++
 	return
 }
